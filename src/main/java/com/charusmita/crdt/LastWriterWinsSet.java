@@ -1,5 +1,6 @@
 package com.charusmita.crdt;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
@@ -22,8 +23,8 @@ public class LastWriterWinsSet<T> implements ZSet<T> {
     }
 
     public LastWriterWinsSet() {
-        this.addSet = new HashSet<>();
-        this.removeSet = new HashSet<>();
+        this.addSet = Collections.synchronizedSet(new HashSet<>());
+        this.removeSet = Collections.synchronizedSet(new HashSet<>());
     }
 
     public LastWriterWinsSet(Set<Entry<T>> addSet, Set<Entry<T>> removeSet) {
@@ -31,6 +32,7 @@ public class LastWriterWinsSet<T> implements ZSet<T> {
         this.removeSet = removeSet;
     }
 
+    @Override
     public LastWriterWinsSet<T> newSet() {
         if (!this.addSet.isEmpty())
             this.addSet.clear();
