@@ -10,7 +10,7 @@ public interface ZSet<T> {
      *
      * @return the (cleared/emptied) calling Set
      */
-    LastWriterWinsSet<T> newSet();
+    ZSet<T> newSet();
 
     /**
      * Adding an element with timestamp to the Add set ZA of CRDT
