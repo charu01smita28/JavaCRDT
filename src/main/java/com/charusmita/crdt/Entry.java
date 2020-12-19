@@ -1,12 +1,14 @@
 package com.charusmita.crdt;
 
+import java.io.Serializable;
+
 /**
- * An com.charusmita.crdt.Entry is a class which consists of an element of datatype T and timestamp
- * to be used in com.charusmita.crdt.LastWriterWinSet
+ * An Entry is a class which consists of an element of datatype T and timestamp
+ * to be used in {@link com.charusmita.crdt.LastWriterWinsSet}
  *
- * @param <T> Datatype of the element to be stored as com.charusmita.crdt.Entry
+ * @param <T> Datatype of the element to be stored as {@link com.charusmita.crdt.Entry}
  */
-public class Entry<T> {
+public class Entry<T> implements Serializable {
 
     private T element;
     private int timestamp;

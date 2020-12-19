@@ -1,5 +1,5 @@
-# java-crdt
-2 implementations of conflict-free replicated data types in JAVA
+# javaCRDT
+2 implementations of conflict-free replicated data types (CRDT) in JAVA
   
 ## What is CRDT ?
 A conflict-free replicated data type (CRDT) is a type of data structure that is used to achieve strong eventual consistency and monotonicity (ie, there are no rollbacks) across a set of nodes in a distributed system. It can be used in very specific cases to implement a distributed data store that does not require any form of synchronization to function.
@@ -39,5 +39,7 @@ Operations which can be performed on it are :
 ### Redis ZSET implementation (LastWriterWinRedisSet)
 2. Redis doesn’t currently implement any CRDT types, it does provide a sorted set type called a ZSET that we can use to implement the LWW Element Set CRDT.
 * A Redis ZSET stores member values alongside a “score”. The set is ordered by the score, but there can never be more than one instance of a given member in a single ZSET (that is, inserting a member “abc” with score 1 and then inserting another “abc” but with score 2 results in a single member, “abc”, with score 2 -- the score is simply updated).
-* Used [Redisson client library ZSET](https://github.com/redisson/redisson/wiki/7.-Distributed-collections#75-scoredsortedset) for the same.
-* Same operations performed as above. But implementation simpler as Redis ZSET already has several common characteristics with LWW Element Set.  
+* Used [Redisson client library ZSET](https://github.com/redisson/redisson/wiki/7.-Distributed-collections#75-scoredsortedset) for the implementing the CRDT Last Writer Wins Set.
+* Same operations performed as above. But implementation is simpler as Redis ZSET already has several common characteristics with LWW Element Set.
+    * **NOTE**:   To be able to successfully run the <code>LastWriterWinsRedisSetTest</code> tests, you need to have a local instance of 
+                  Redis Server running [Redis](https://redis.io/download).   
